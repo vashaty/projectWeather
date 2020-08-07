@@ -49,12 +49,14 @@ button.onclick = function (name)
 
         main.innerHTML = myJson.city.name;
         var temp = "xd";
+        var j = 0;
         for (i = 0; i < 40; i++) {
             var p = document.createElement("p");
             var datum = myJson.list[i].dt_txt.split(" ");
             if(temp != datum[0]){
                 var div = document.createElement("div");
-                div.setAttribute("id", "card"+i);
+                div.setAttribute("id", "card"+j);
+                j++;
                 div.setAttribute("class", "card");
                 document.getElementById("container").appendChild(div);
                 // var divV = document.querySelector('#card'+i);
@@ -70,7 +72,7 @@ button.onclick = function (name)
             div.appendChild(p);
 
             p = document.createElement("p");
-            p.innerHTML = myJson.list[i].main.temp;
+            p.innerHTML = myJson.list[i].main.temp + "°C";
             div.appendChild(p); 
 
             p = document.createElement("p");
