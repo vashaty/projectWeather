@@ -27,15 +27,27 @@ var button= document.querySelector('.submit');
 
 // .catch(err => alert("Wrong city name!"));
 // })
-
+var xd = 0;
 button.onclick = function (name) 
 {
+    main.innerHTML = "";
+    if(xd != 0){
+        for(i = 0; i < 5; i++){
+            document.getElementById("card"+i).remove();
+        }
+    }
     myJsonContent = fetch('http://api.openweathermap.org/data/2.5/forecast?q='+input.value+'&appid=efa340fdb65947b231e403f7a0a9c21a&units=metric&lang=cz')
     
     .then(function (response) 
     {
-        return response.json();
+        if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Lokalita nebyla nalezeno.');
+          }
     })
+    
+
     .then(function (myJson) 
     {
         // var today = new Date();
@@ -46,7 +58,6 @@ button.onclick = function (name)
         // localStorage.setItem(localStorage.length, time +" -- "+userInput.value + " -> " + resultInput.value);
         // makeHistory();
         // localStorage.clear();
-
         main.innerHTML = myJson.city.name;
         var temp = "xd";
         var j = 0;
@@ -65,6 +76,7 @@ button.onclick = function (name)
                 div.appendChild(p);
                 var hr = document.createElement("hr");
                 div.appendChild(hr);
+                xd++;
             }
 
             p = document.createElement("p");
@@ -82,6 +94,7 @@ button.onclick = function (name)
             hr = document.createElement("hr");
             div.appendChild(hr);
 
+
             
 
         }
@@ -94,7 +107,10 @@ button.onclick = function (name)
         // desc.innerHTML = descValue;
         // temp.innerHTML = "Teplota - "+tempValue;
         // date.innerHTML = "Datum - "+dateValue;
-    });
+    }).catch(function(err) {
+        alert(err);
+      });
+    
     // localStorage.setItem(userInput.value, resultInput.value);
     
 }
