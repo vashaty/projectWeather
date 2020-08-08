@@ -78,7 +78,8 @@ button.onclick = function (name)
                 document.getElementById("container").appendChild(div);
 
                 temp = datum[0];
-                p.innerHTML = temp;
+                var tempSplit = datum[0].split("-");
+                p.innerHTML = tempSplit[2]+". "+tempSplit[1]+". "+tempSplit[0];
                 div.appendChild(p);
                 // var hr = document.createElement("hr");
                 // div.appendChild(hr);
