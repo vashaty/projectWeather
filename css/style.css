@@ -7,7 +7,7 @@
   body{
     font-family: "Nunito",sans-serif;
     background: #f8f8f8;
-    background-image: url("../img/pattern3.jpg");
+    background-image: url("../img/pattern2.jpg");
   }
   
   .input{
@@ -72,8 +72,17 @@
 
   #container{
     
-    max-width: 1000px;
+    max-width: auto;
     /* float: left; */
+    /* position: absolute; */
+    width: 75%;
+    padding: 20px;
     margin: auto;
+    /* background-color: #ff000014; */
+    height: 1100px;
+    backdrop-filter: blur(50px);
+    /* display: table-cell; */
+    text-align: center;
+    box-shadow: 1px 1px 20px 20px #00000054;
 
   }
