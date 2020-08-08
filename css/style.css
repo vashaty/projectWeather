@@ -7,11 +7,12 @@
   body{
     font-family: "Nunito",sans-serif;
     background: #f8f8f8;
+    background-image: url("../img/pattern3.jpg");
   }
   
   .input{
     text-align: center;
-    margin: 100px auto;
+    margin: 50px auto;
   }
   
   input[type="submit"]{
@@ -38,13 +39,16 @@
   
   .card{
     width: 50%;
-    background: #e7e7e7;
+    /* background: #e7e7e7; */
+    background: #82d2f93b;
     float: left;
     width: auto;
     height: auto;
     margin: 50px 5px;
     border-radius: 2px;
     padding: 20px;
+    backdrop-filter: blur(50px);
+    color: whitesmoke;
   }
   
   
