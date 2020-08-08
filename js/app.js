@@ -63,36 +63,69 @@ button.onclick = function (name)
         var j = 0;
         for (i = 0; i < 40; i++) {
             var p = document.createElement("p");
+            var th1 = document.createElement("th");
+            var th2 = document.createElement("th");
+            var th3 = document.createElement("th");
             var datum = myJson.list[i].dt_txt.split(" ");
             if(temp != datum[0]){
                 var div = document.createElement("div");
                 div.setAttribute("id", "card"+j);
                 j++;
                 div.setAttribute("class", "card");
+
+                var table = document.createElement("table");
+
                 document.getElementById("container").appendChild(div);
-                // var divV = document.querySelector('#card'+i);
+
                 temp = datum[0];
                 p.innerHTML = temp;
                 div.appendChild(p);
-                var hr = document.createElement("hr");
-                div.appendChild(hr);
+                // var hr = document.createElement("hr");
+                // div.appendChild(hr);
                 xd++;
+
+                div.appendChild(table);
+
+                var tr = document.createElement("tr");
+                th1.innerHTML = "Čas";
+                tr.appendChild(th1);
+                th2.innerHTML = "Teplota";
+                tr.appendChild(th2);
+                th3.innerHTML = "Popis";
+                tr.appendChild(th3);
+                table.appendChild(tr);
+
+                // var divV = document.querySelector('#card'+i);
+                
             }
 
-            p = document.createElement("p");
-            p.innerHTML = datum[1];
-            div.appendChild(p);
+            tr = document.createElement("tr");
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+            var td3 = document.createElement("td");
+            td1.innerHTML = datum[1];
+            tr.appendChild(td1);
+            td2.innerHTML = myJson.list[i].main.temp + "°C";
+            tr.appendChild(td2);
+            td3.innerHTML = myJson.list[i].weather[0].description;
+            tr.appendChild(td3);
+            table.appendChild(tr);
+            // p = document.createElement("p");
+            // p.innerHTML = datum[1];
+            // div.appendChild(p);
 
-            p = document.createElement("p");
-            p.innerHTML = myJson.list[i].main.temp + "°C";
-            div.appendChild(p); 
+            // p = document.createElement("p");
+            // p.innerHTML = myJson.list[i].main.temp + "°C";
+            // div.appendChild(p); 
 
-            p = document.createElement("p");
-            p.innerHTML = myJson.list[i].weather[0].description;
-            div.appendChild(p);
+            // p = document.createElement("p");
+            // p.innerHTML = myJson.list[i].weather[0].description;
+            // div.appendChild(p);
             
-            hr = document.createElement("hr");
-            div.appendChild(hr);
+            // hr = document.createElement("hr");
+            // div.appendChild(hr);
+
+
 
 
             
