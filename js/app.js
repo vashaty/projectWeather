@@ -59,6 +59,7 @@ button.onclick = function (name)
         // makeHistory();
         // localStorage.clear();
         main.innerHTML = myJson.city.name;
+        var months =["xxx","ledna","února","března","dubna","května","června","července","srpna","září","října","listopadu","prosince"];
         var temp = "xd";
         var j = 0;
         for (i = 0; i < 40; i++) {
@@ -79,7 +80,7 @@ button.onclick = function (name)
 
                 temp = datum[0];
                 var tempSplit = datum[0].split("-");
-                p.innerHTML = tempSplit[2]+". "+tempSplit[1]+". "+tempSplit[0];
+                p.innerHTML = parseInt(tempSplit[2])+". "+months[parseInt(tempSplit[1])]+" "+tempSplit[0];
                 div.appendChild(p);
                 // var hr = document.createElement("hr");
                 // div.appendChild(hr);
