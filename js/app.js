@@ -32,7 +32,7 @@ button.onclick = function (name)
 {
     main.innerHTML = "";
     if(xd != 0){
-        for(i = 0; i < 5; i++){
+        for(i = 0; i < 6; i++){
             document.getElementById("card"+i).remove();
         }
     }
