@@ -61,6 +61,7 @@ button.onclick = function (name)
         main.innerHTML = myJson.city.name;
         var months =["xxx","ledna","února","března","dubna","května","června","července","srpna","září","října","listopadu","prosince"];
         var temp = "xd";
+        var weekday = ["neděle", "pondělí", "úterý","středa","čtvrtek","pátek","sobota"];
         var j = 0;
         for (i = 0; i < 40; i++) {
             var p = document.createElement("p");
@@ -68,6 +69,9 @@ button.onclick = function (name)
             var th2 = document.createElement("th");
             var th3 = document.createElement("th");
             var datum = myJson.list[i].dt_txt.split(" ");
+            var date = new Date(datum[0]);
+            var day = date.getDay();
+            
             if(temp != datum[0]){
                 var div = document.createElement("div");
                 div.setAttribute("id", "card"+j);
@@ -80,7 +84,7 @@ button.onclick = function (name)
 
                 temp = datum[0];
                 var tempSplit = datum[0].split("-");
-                p.innerHTML = parseInt(tempSplit[2])+". "+months[parseInt(tempSplit[1])]+" "+tempSplit[0];
+                p.innerHTML = weekday[day] + " " + parseInt(tempSplit[2])+". "+months[parseInt(tempSplit[1])]+" "+tempSplit[0];
                 div.appendChild(p);
                 // var hr = document.createElement("hr");
                 // div.appendChild(hr);
