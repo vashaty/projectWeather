@@ -153,8 +153,8 @@ function forecast(name)
             table.appendChild(tr);
             document.getElementById("favBtn").onclick = function (){
               saveFav();
-              loadFav();
             }
+            console.log(localStorage);
             // p = document.createElement("p");
             // p.innerHTML = datum[1];
             // div.appendChild(p);
@@ -200,15 +200,25 @@ button.onclick = function (){
 
 function saveFav(){
   localStorage.setItem(input.value,input.value);
-  console.log(localStorage["brno"]);
   console.log(localStorage);
   loadFav();
 }
 
 function loadFav() {
-  var text = "";
+  
   for(i = 0; i < localStorage.length ; i++) {
-      text += localStorage.getItem(localStorage.key(i)) +"<br>";
+    var favCity = document.createElement("input");
+    favCity.setAttribute("type","submit");
+    favCity.setAttribute("class","favCity");
+    favCity.setAttribute("onclick","forecastFav(this)");
+    // console.log(localStorage.getItem(localStorage.key(i)));
+    favCity.setAttribute("value",localStorage.getItem(localStorage.key(i)));
+    favCity.setAttribute("id",localStorage.getItem(localStorage.key(i)));
+    document.getElementById("favDiv").appendChild(favCity);
+
   }
-  document.getElementById("fav").innerHTML = text;   
+}
+
+function forecastFav(city){
+  forecast(city.value);
 }
