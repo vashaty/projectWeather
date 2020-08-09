@@ -39,8 +39,9 @@ input.addEventListener("keyup", function(event) {
     document.getElementById("myBtn").click();
   }
 });
+
 var xd = 0;
-button.onclick = function (name) 
+function forecast(name) 
 {
     main.innerHTML = "";
     if(xd != 0){
@@ -48,7 +49,7 @@ button.onclick = function (name)
             document.getElementById("card"+i).remove();
         }
     }
-    myJsonContent = fetch('http://api.openweathermap.org/data/2.5/forecast?q='+input.value+'&appid=efa340fdb65947b231e403f7a0a9c21a&units=metric&lang=cz')
+    myJsonContent = fetch('http://api.openweathermap.org/data/2.5/forecast?q='+name+'&appid=efa340fdb65947b231e403f7a0a9c21a&units=metric&lang=cz')
     
     .then(function (response) 
     {
@@ -70,7 +71,12 @@ button.onclick = function (name)
         // localStorage.setItem(localStorage.length, time +" -- "+userInput.value + " -> " + resultInput.value);
         // makeHistory();
         // localStorage.clear();
+        var favBtn = document.createElement("input")
+        favBtn.setAttribute("type","submit");
+        favBtn.setAttribute("value","Přidat do oblíbených");
+        favBtn.setAttribute("id","favBtn");
         main.innerHTML = myJson.city.name;
+        main.appendChild(favBtn);
         var months =["xxx","ledna","února","března","dubna","května","června","července","srpna","září","října","listopadu","prosince"];
         var temp = "xd";
         var weekday = ["neděle", "pondělí", "úterý","středa","čtvrtek","pátek","sobota"];
@@ -145,6 +151,10 @@ button.onclick = function (name)
             tdDesc.appendChild(icon);
             tr.appendChild(tdDesc);
             table.appendChild(tr);
+            document.getElementById("favBtn").onclick = function (){
+              saveFav();
+              loadFav();
+            }
             // p = document.createElement("p");
             // p.innerHTML = datum[1];
             // div.appendChild(p);
@@ -181,4 +191,24 @@ button.onclick = function (name)
     
     // localStorage.setItem(userInput.value, resultInput.value);
     
+}
+button.onclick = function (){
+  forecast(input.value);
+}
+
+
+
+function saveFav(){
+  localStorage.setItem(input.value,input.value);
+  console.log(localStorage["brno"]);
+  console.log(localStorage);
+  loadFav();
+}
+
+function loadFav() {
+  var text = "";
+  for(i = 0; i < localStorage.length ; i++) {
+      text += localStorage.getItem(localStorage.key(i)) +"<br>";
+  }
+  document.getElementById("fav").innerHTML = text;   
 }
