@@ -99,6 +99,14 @@
     overflow: auto;
 
   }
+  #nameDiv{
+    vertical-align: middle;
+
+  }
+  #favBtn{
+    font-weight: 400;
+    font-size: 15px;
+  }
 
   table {
     font-family: arial, sans-serif;

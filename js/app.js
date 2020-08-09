@@ -43,8 +43,9 @@ input.addEventListener("keyup", function(event) {
 var xd = 0;
 function forecast(name) 
 {
-    main.innerHTML = "";
     if(xd != 0){
+      document.getElementById("nameDiv").remove();
+        document.getElementById("favDiv")
         for(i = 0; i < 6; i++){
             document.getElementById("card"+i).remove();
         }
@@ -71,12 +72,23 @@ function forecast(name)
         // localStorage.setItem(localStorage.length, time +" -- "+userInput.value + " -> " + resultInput.value);
         // makeHistory();
         // localStorage.clear();
-        var favBtn = document.createElement("input")
+        var nameDiv = document.createElement("div");
+        nameDiv.setAttribute("id","nameDiv");
+        var favBtn = document.createElement("input");
+        var hName = document.createElement("h1");
+        hName.setAttribute("class","name");
+        hName.setAttribute("id","name");
         favBtn.setAttribute("type","submit");
-        favBtn.setAttribute("value","Přidat do oblíbených");
+        if(localStorage.getItem(myJson.city.name) != null){
+          favBtn.setAttribute("value","Odebrat z oblíbených");
+        }else{
+          favBtn.setAttribute("value","Přidat do oblíbených");
+        }
         favBtn.setAttribute("id","favBtn");
-        main.innerHTML = myJson.city.name;
-        main.appendChild(favBtn);
+        hName.innerHTML = myJson.city.name;
+        nameDiv.appendChild(hName);
+        nameDiv.appendChild(favBtn);
+        document.getElementById("container").appendChild(nameDiv);
         var months =["xxx","ledna","února","března","dubna","května","června","července","srpna","září","října","listopadu","prosince"];
         var temp = "xd";
         var weekday = ["neděle", "pondělí", "úterý","středa","čtvrtek","pátek","sobota"];
@@ -151,7 +163,7 @@ function forecast(name)
             tdDesc.appendChild(icon);
             tr.appendChild(tdDesc);
             table.appendChild(tr);
-            document.getElementById("favBtn").onclick = function (){
+            favBtn.onclick = function (){
               saveFav();
             }
             console.log(localStorage);
@@ -199,9 +211,25 @@ button.onclick = function (){
 
 
 function saveFav(){
-  localStorage.setItem(input.value,input.value);
-  console.log(localStorage);
-  loadFav();
+  localStorage.setItem(document.getElementById("name").innerHTML,document.getElementById("name").innerHTML);
+  if(document.getElementById(document.getElementById("name").innerHTML) == null){
+    
+      var favCity = document.createElement("input");
+      favCity.setAttribute("type","submit");
+      favCity.setAttribute("class","favCity");
+      favCity.setAttribute("onclick","forecastFav(this)");
+      // console.log(localStorage.getItem(localStorage.key(i)));
+      favCity.setAttribute("value",localStorage.getItem(document.getElementById("name").innerHTML));
+      favCity.setAttribute("id",localStorage.getItem(document.getElementById("name").innerHTML));
+      document.getElementById("favDiv").appendChild(favCity);
+      console.log(localStorage);
+      document.getElementById("favBtn").setAttribute("value", "Odebrat z oblíbených");
+    
+  }else{
+    localStorage.removeItem(document.getElementById("name").innerHTML);
+    document.getElementById(document.getElementById("name").innerHTML).remove();
+    document.getElementById("favBtn").setAttribute("value", "Přidat do oblíbených");
+  }
 }
 
 function loadFav() {
