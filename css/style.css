@@ -8,6 +8,7 @@
     font-family: "Nunito",sans-serif;
     background: #f8f8f8;
     background-image: url("../img/pattern2.jpg");
+    display: grid;
   }
   
   .input{

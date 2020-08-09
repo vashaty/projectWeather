@@ -45,8 +45,9 @@ function forecast(name)
 {
     if(xd != 0){
       document.getElementById("nameDiv").remove();
-        document.getElementById("favDiv")
-        for(i = 0; i < 6; i++){
+        document.getElementById("favDiv");
+        var countRemove = document.getElementsByClassName("card").length; //potřebná oprava
+        for(i = 0; i < countRemove; i++){
             document.getElementById("card"+i).remove();
         }
     }
@@ -249,4 +250,5 @@ function loadFav() {
 
 function forecastFav(city){
   forecast(city.value);
+  xd++;
 }
