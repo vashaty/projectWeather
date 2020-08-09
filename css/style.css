@@ -91,11 +91,12 @@
     padding: 20px;
     margin: auto;
     /* background-color: #ff000014; */
-    height: 2800px;
+    /* height: 3350px; */
     backdrop-filter: blur(60px);
     /* display: table-cell; */
     text-align: center;
     box-shadow: 1px 1px 20px 20px #00000054;
+    overflow: auto;
 
   }
 
@@ -113,6 +114,10 @@
     font-size: 13pt;
   }
 
+  td img{
+    vertical-align: middle;
+  }
+
   th {
     border: 1px solid #dddddd;
     text-align: left;
@@ -122,3 +127,10 @@
     /* -webkit-text-stroke: 1px rgb(0, 0, 0); */
   }
 
+  .arrow {
+    border: solid black;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 7px;
+  }

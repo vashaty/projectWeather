@@ -27,6 +27,18 @@ var button= document.querySelector('.submit');
 
 // .catch(err => alert("Wrong city name!"));
 // })
+var input = document.getElementById("myInput");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("myBtn").click();
+  }
+});
 var xd = 0;
 button.onclick = function (name) 
 {
@@ -43,7 +55,7 @@ button.onclick = function (name)
         if (response.ok) {
             return response.json();
           } else {
-            throw new Error('Lokalita nebyla nalezeno.');
+            throw new Error('Lokalita nebyla nalezena.');
           }
     })
     
@@ -65,9 +77,10 @@ button.onclick = function (name)
         var j = 0;
         for (i = 0; i < 40; i++) {
             var p = document.createElement("p");
-            var th1 = document.createElement("th");
-            var th2 = document.createElement("th");
-            var th3 = document.createElement("th");
+            var thTime = document.createElement("th");
+            var thTemperature = document.createElement("th");
+            var thDesc = document.createElement("th");
+            var thWind = document.createElement("th");
             var datum = myJson.list[i].dt_txt.split(" ");
             var date = new Date(datum[0]);
             var day = date.getDay();
@@ -93,12 +106,14 @@ button.onclick = function (name)
                 div.appendChild(table);
 
                 var tr = document.createElement("tr");
-                th1.innerHTML = "Čas";
-                tr.appendChild(th1);
-                th2.innerHTML = "Teplota";
-                tr.appendChild(th2);
-                th3.innerHTML = "Popis";
-                tr.appendChild(th3);
+                thTime.innerHTML = "Čas";
+                tr.appendChild(thTime);
+                thTemperature.innerHTML = "Teplota";
+                tr.appendChild(thTemperature);
+                thWind.innerHTML = "Vítr";
+                tr.appendChild(thWind);
+                thDesc.innerHTML = "Popis";
+                tr.appendChild(thDesc);
                 table.appendChild(tr);
 
                 // var divV = document.querySelector('#card'+i);
@@ -106,15 +121,29 @@ button.onclick = function (name)
             }
 
             tr = document.createElement("tr");
-            var td1 = document.createElement("td");
-            var td2 = document.createElement("td");
-            var td3 = document.createElement("td");
-            td1.innerHTML = datum[1];
-            tr.appendChild(td1);
-            td2.innerHTML = myJson.list[i].main.temp + "°C";
-            tr.appendChild(td2);
-            td3.innerHTML = myJson.list[i].weather[0].description;
-            tr.appendChild(td3);
+            var tdTime = document.createElement("td");
+            var tdTemperature = document.createElement("td");
+            var tdDesc = document.createElement("td");
+            var tdWind = document.createElement("td");
+            var icon = document.createElement("img");
+            icon.src = "http://openweathermap.org/img/wn/"+ myJson.list[i].weather[0].icon +"@2x.png";
+            icon.height = 30;
+            icon.width = 30;
+
+            var windArrow = document.createElement("i");
+            windArrow.setAttribute("class", "arrow");
+            windArrow.style.transform = "rotate("+myJson.list[i].wind.deg+"deg)";
+
+            tdTime.innerHTML = datum[1];
+            tr.appendChild(tdTime);
+            tdTemperature.innerHTML = myJson.list[i].main.temp + "°C";
+            tr.appendChild(tdTemperature);
+            tdWind.innerHTML = myJson.list[i].wind.speed + " m/s ";
+            tdWind.appendChild(windArrow);
+            tr.appendChild(tdWind);
+            tdDesc.innerHTML = myJson.list[i].weather[0].description;
+            tdDesc.appendChild(icon);
+            tr.appendChild(tdDesc);
             table.appendChild(tr);
             // p = document.createElement("p");
             // p.innerHTML = datum[1];
