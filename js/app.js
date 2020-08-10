@@ -209,10 +209,13 @@ button.onclick = function (){
   forecast(input.value);
 }
 
-
+var favH3 = document.getElementById("favH3");
 
 function saveFav(){
   localStorage.setItem(document.getElementById("name").innerHTML,document.getElementById("name").innerHTML);
+  if(localStorage.length == 1){
+    favH3.innerHTML = "Oblíbené lokality:";
+  }
   if(document.getElementById(document.getElementById("name").innerHTML) == null){
     
       var favCity = document.createElement("input");
@@ -230,11 +233,18 @@ function saveFav(){
     localStorage.removeItem(document.getElementById("name").innerHTML);
     document.getElementById(document.getElementById("name").innerHTML).remove();
     document.getElementById("favBtn").setAttribute("value", "Přidat do oblíbených");
+    if(localStorage.length == 0){
+      favH3.innerHTML = "Nebyly nalezeny žádné oblíbené lokality";
+    }
   }
 }
 
 function loadFav() {
-  
+  if(localStorage.length == 0){
+    favH3.innerHTML = "Nebyly nalezeny žádné oblíbené lokality";
+  }else{
+    favH3.innerHTML = "Oblíbené lokality:";
+  }
   for(i = 0; i < localStorage.length ; i++) {
     var favCity = document.createElement("input");
     favCity.setAttribute("type","submit");
