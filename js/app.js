@@ -10,11 +10,10 @@ input.addEventListener("keyup", function(event) {
   }
 });
 
-var xd = 0; //proměnná pro zjištění aktivních tabulek
 function forecast(name) 
 {
   //smazání existujících tabulek
-    if(xd != 0){
+    if(document.getElementsByClassName("card").length != 0){
       document.getElementById("nameDiv").remove();
         document.getElementById("favDiv");
         var countRemove = document.getElementsByClassName("card").length; //potřebná oprava
@@ -103,7 +102,6 @@ function forecast(name)
                 div.appendChild(p);
                 // var hr = document.createElement("hr");
                 // div.appendChild(hr);
-                xd++; //proměnná pro zjištění, jestli byla vytvořen div s tabulkou
 
                 div.appendChild(table);
                 //nadpisy sloupců tabulky
