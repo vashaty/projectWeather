@@ -84,6 +84,16 @@
     -webkit-text-stroke: 1px black;
   }
 
+  @media all and (max-width: 750px) and (min-width: 100px) {
+    #myBtn {
+     margin-top:11px;
+    }
+    #myInput{
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+
   #container{
     
     max-width: auto;
